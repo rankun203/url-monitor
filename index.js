@@ -45,7 +45,7 @@ for(var i=0; i<urls.length; i++) {
 
     request({
         uri:_url.url,
-        timeout: 10000
+        timeout: 5000
     }, function (error, response, body) {
         if(error) throw error;
         var _url = urls[_sub];
