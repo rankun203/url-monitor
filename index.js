@@ -40,7 +40,9 @@ function sendMail(subject, body) {
     });
 }
 
-for(var _url in urls) {
+for(var i=0; i<urls.length; i++) {
+    var _url = urls[i];
+
     request(_url.url, function (error, response, body) {
         if(error) throw error;
 
@@ -64,4 +66,3 @@ for(var _url in urls) {
         if(notFound) sendMail("什么都没有找到", JSON.stringify(urls));
     });
 }
-
