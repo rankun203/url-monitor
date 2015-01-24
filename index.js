@@ -56,18 +56,18 @@ function check() {
                 case actions.statusCode:
                     console.log("Check statusCode " + _url.expect + " from " + _url.url);
                     if(response.statusCode == 200) {
-                        console.log('Success');
+                        console.log('200 Success');
                         sendMail("Website " + _url.url + " is 200!!", body);
                     } else if(response.statusCode == 404) {
-                        console.log('Not found');
-                        sendMail(_url + "Not Found", body)
+                        console.log('404 Not found');
+                        sendMail(_url + "404 Not Found", body)
                     }
                     break;
                 case actions.grep:
                     console.log("Grep " + _url.expect + " from " + _url.url);
                     var _tmpHtml = body.match(_url.expect);
-                    if(_tmpHtml != null) sendMail(_url.url + " Found ", _tmpHtml + ": Found :\n" + _url.url);
-                    else if (_tmpHtml == null) sendMail(_url.url + " Not Found ", _tmpHtml + ": Not Found :\n" + _url.url);
+                    if(_tmpHtml != null) sendMail(_url.url + " Pattern found ", _tmpHtml + ": Pattern found :\n" + _url.url);
+                    else if (_tmpHtml == null) sendMail(_url.url + " Pattern not found ", _tmpHtml + ": Pattern not found :\n" + _url.url);
                     break;
             }
         });
