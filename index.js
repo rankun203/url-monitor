@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// watch -n8640 ./index.js
+
 var request = require('request');
 var Email = require('email').Email;
 
@@ -25,7 +27,6 @@ var urls = [
 var from = 'rankun203@gmail.com';
 var to = 'rankun203@icloud.com';
 
-
 function sendMail(subject, body) {
     var myMsg = new Email({
         from: from,
@@ -39,37 +40,42 @@ function sendMail(subject, body) {
     });
 }
 
-var _sub = 0;
-for(var i=0; i<urls.length; i++) {
-    var _url = urls[i];
+function check() {
+    var _sub = 0;
+    for(var i=0; i<urls.length; i++) {
+        var _url = urls[i];
 
-    request({
-        uri:_url.url,
-        timeout: 5000
-    }, function (error, response, body) {
-        if(error) throw error;
-        var _url = urls[_sub];
-        _sub++;
+        request({
+            uri:_url.url,
+            timeout: 5000
+        }, function (error, response, body) {
+            if(error) throw error;
+            var _url = urls[_sub];
+            _sub++;
 
-        var notFound = false;
-        switch (_url.action) {
-            case actions.statusCode:
-                console.log("Check statusCode " + _url.expect + " from " + _url.url);
-                if(response.statusCode == 200) {
-                    console.log('Success');
-                    sendMail("Website accessible!!", body);
-                } else if(response.statusCode == 404) {
-                    console.log('Not found');
-                    notFound = true;
-                } else notFound = true;
-                break;
-            case actions.grep:
-                console.log("Grep " + _url.expect + " from " + _url.url);
-                var _tmpHtml = body.match(_url.expect);
-                if(_tmpHtml == null) sendMail(_url.url + "找到了", _tmpHtml + ":\n" + _url.url);
-                else notFound = true;
-                break;
-        }
-        if(notFound) sendMail("什么都没有找到", JSON.stringify(urls));
-    });
+            var notFound = false;
+            switch (_url.action) {
+                case actions.statusCode:
+                    console.log("Check statusCode " + _url.expect + " from " + _url.url);
+                    if(response.statusCode == 200) {
+                        console.log('Success');
+                        sendMail("Website accessible!!", body);
+                    } else if(response.statusCode == 404) {
+                        console.log('Not found');
+                        notFound = true;
+                    } else notFound = true;
+                    break;
+                case actions.grep:
+                    console.log("Grep " + _url.expect + " from " + _url.url);
+                    var _tmpHtml = body.match(_url.expect);
+                    if(_tmpHtml == null) sendMail(_url.url + "找到了", _tmpHtml + ":\n" + _url.url);
+                    else notFound = true;
+                    break;
+            }
+            if(notFound) sendMail("什么都没有找到", JSON.stringify(urls));
+        });
+    }
 }
+
+console.log("------------------------" + new Date());
+check();
