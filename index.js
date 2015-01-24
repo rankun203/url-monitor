@@ -66,8 +66,8 @@ function check() {
                 case actions.grep:
                     console.log("Grep " + _url.expect + " from " + _url.url);
                     var _tmpHtml = body.match(_url.expect);
-                    if(_tmpHtml != null) sendMail(_url.url + " Pattern found ", _tmpHtml + ": Pattern found :\n" + _url.url);
-                    else if (_tmpHtml == null) sendMail(_url.url + " Pattern not found ", _tmpHtml + ": Pattern not found :\n" + _url.url);
+                    if(_tmpHtml != null) sendMail(_url.url + " Pattern " + _url.expect + " found ", _tmpHtml + ": Pattern " + _url.expect + " found :\n" + _url.url);
+                    else if (_tmpHtml == null) sendMail(_url.url + " Pattern " + _url.expect + " not found ", _tmpHtml + ": Pattern " + _url.expect + " not found :\n" + _url.url);
                     break;
             }
         });
