@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// watch -n8640 ./index.js
+// watch -n86400 ./index.js
 
 var request = require('request');
 var Email = require('email').Email;
