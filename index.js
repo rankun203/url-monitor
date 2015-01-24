@@ -49,6 +49,7 @@ for(var i=0; i<urls.length; i++) {
         var notFound = false;
         switch (_url.action) {
             case actions.statusCode:
+                console.log("Check statusCode " + _url.expect + " from " + _url.url);
                 if(response.statusCode == 200) {
                     console.log('Success');
                     sendMail("Website accessible!!", body);
@@ -58,6 +59,7 @@ for(var i=0; i<urls.length; i++) {
                 } else notFound = true;
                 break;
             case actions.grep:
+                console.log("Grep " + _url.expect + " from " + _url.url);
                 var _tmpHtml = body.match(_url.expect);
                 if(_tmpHtml == null) sendMail(_url.url + "找到了", _tmpHtml + ":\n" + _url.url);
                 else notFound = true;
