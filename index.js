@@ -43,7 +43,10 @@ var _sub = 0;
 for(var i=0; i<urls.length; i++) {
     var _url = urls[i];
 
-    request(_url.url, function (error, response, body) {
+    request({
+        uri:_url.url,
+        timeout: 10000
+    }, function (error, response, body) {
         if(error) throw error;
         var _url = urls[_sub];
         _sub++;
