@@ -25,7 +25,7 @@ var urls = [
     }
 ];
 var from = 'rankun203@gmail.com';
-var to = 'rankun203@icloud.com';
+var to = 'rankun203@gmail.com';
 
 function sendMail(subject, body) {
     var myMsg = new Email({
