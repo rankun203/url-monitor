@@ -26,7 +26,7 @@ var urls = [
     },{
         url: 'http://www.233.com/zikao/baoming/',
         action: actions.copy,
-        search: //
+        search: /.*/
     }
 ];
 //'http://wb.zk789.cn/',
