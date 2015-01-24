@@ -5,8 +5,7 @@ var Email = require('email').Email;
 
 var actions = {
     statusCode: 'statusCode',
-    grep: 'grep',
-    copy: 'copy'
+    grep: 'grep'
 };
 var urls = [
     {
@@ -40,11 +39,14 @@ function sendMail(subject, body) {
     });
 }
 
+var _sub = 0;
 for(var i=0; i<urls.length; i++) {
     var _url = urls[i];
 
     request(_url.url, function (error, response, body) {
         if(error) throw error;
+        var _url = urls[_sub];
+        _sub++;
 
         var notFound = false;
         switch (_url.action) {
