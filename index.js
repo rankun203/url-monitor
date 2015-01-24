@@ -32,8 +32,7 @@ function sendMail(subject, body) {
         from: from,
         to: to,
         subject: subject,
-        body: body,
-        bodyType: 'html'
+        body: body
     });
     myMsg.send(function(err) {
         console.error("ERROR: " + err);
