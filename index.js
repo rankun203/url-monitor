@@ -57,7 +57,7 @@ function check() {
                     console.log("Check statusCode " + _url.expect + " from " + _url.url);
                     if(response.statusCode == 200) {
                         console.log('Success');
-                        sendMail("Website " + _url + " accessible!!", body);
+                        sendMail("Website " + _url.url + " is 200!!", body);
                     } else if(response.statusCode == 404) {
                         console.log('Not found');
                         sendMail(_url + "Not Found", body)
