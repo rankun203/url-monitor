@@ -1,0 +1,28 @@
+{
+  "name": "url-monitor",
+  "version": "1.0.0",
+  "description": "Monitor a url with specified status code or content",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "coffee ./index.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rankun203/url-monitor.git"
+  },
+  "keywords": [
+    "url",
+    "monitor"
+  ],
+  "author": "rankun203",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rankun203/url-monitor/issues"
+  },
+  "homepage": "https://github.com/rankun203/url-monitor",
+  "dependencies": {
+    "request": "~2.51.0",
+    "email": "~0.2.6"
+  }
+}
