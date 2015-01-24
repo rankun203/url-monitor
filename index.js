@@ -52,26 +52,24 @@ function check() {
             var _url = urls[_sub];
             _sub++;
 
-            var notFound = false;
             switch (_url.action) {
                 case actions.statusCode:
                     console.log("Check statusCode " + _url.expect + " from " + _url.url);
                     if(response.statusCode == 200) {
                         console.log('Success');
-                        sendMail("Website accessible!!", body);
+                        sendMail("Website " + _url + " accessible!!", body);
                     } else if(response.statusCode == 404) {
                         console.log('Not found');
-                        notFound = true;
-                    } else notFound = true;
+                        sendMail(_url + "Not Found", body)
+                    }
                     break;
                 case actions.grep:
                     console.log("Grep " + _url.expect + " from " + _url.url);
                     var _tmpHtml = body.match(_url.expect);
-                    if(_tmpHtml == null) sendMail(_url.url + "找到了", _tmpHtml + ":\n" + _url.url);
-                    else notFound = true;
+                    if(_tmpHtml != null) sendMail(_url.url + " Found ", _tmpHtml + ": Found :\n" + _url.url);
+                    else if (_tmpHtml == null) sendMail(_url.url + " Not Found ", _tmpHtml + ": Not Found :\n" + _url.url);
                     break;
             }
-            if(notFound) sendMail("什么都没有找到", JSON.stringify(urls));
         });
     }
 }
